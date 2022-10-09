@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("api/employee")
+@RequestMapping("/employee")
 public class EmployeeController {
 	@Autowired
 
@@ -29,6 +29,12 @@ public class EmployeeController {
 
 	public static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
 
+	@GetMapping("/health")
+	public ResponseDTO<String> getHealth() {
+		log.info(" getHealth ");
+		return ResponseDTO.success("Application is Running!!!");
+	}
+	
 	@PostMapping()
 	public ResponseDTO<EmployeeDTO> createEmployee(@RequestBody @Validated EmployeeDTO EmployeeDto) {
 		log.info(" EmployeeDto  id: {} ", EmployeeDto);
